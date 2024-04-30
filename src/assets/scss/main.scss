@@ -1,7 +1,4 @@
-@import 'bootstrap-icons/font/bootstrap-icons.scss';
-@import 'bootstrap/scss/bootstrap.scss';
-@import '../scss/base.scss';
-@import '../scss/variables';
-
-
-
+@import "variables";
+@import "bootstrap";
+@import "utils";
+@import "base";

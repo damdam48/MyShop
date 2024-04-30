@@ -1,15 +1,17 @@
-<script setup lang="ts">
-import TheHeader from '@/components/TheHeader.vue';
-</script>
-
 <template>
-  <TheHeader />
-
-  <main>main</main>
-
-  <footer>footer</footer>
+  <div>
+    <TheHeader />
+    <TheMain />
+    <TheFooter />
+  </div>
 </template>
 
-<style scoped>
+<script lang="ts" setup>
+import TheHeader from "@/components/TheHeader.vue";
+import TheMain from "@/components/TheMain.vue";
+import TheFooter from "@/components/TheFooter.vue";
+</script>
 
+<style lang="scss">
+@import '@/assets/scss/main.scss';
 </style>

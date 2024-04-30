@@ -1,5 +1,8 @@
-//Roboto
-@import url('https://fonts.googleapis.com/css2?family=Roboto:ital@0;1&display=swap');
+body {
+  font-weight: 300;
+}
 
-//lato
-@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,400;0,700;1,400&family=Roboto:ital@0;1&display=swap');
+:where(h1, h2, h3, h4, h5, h6, .btn) {
+  font-family:$fc-font-title !important;
+  font-weight: 600 !important;
+}

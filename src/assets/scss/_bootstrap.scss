@@ -1,16 +1,17 @@
-/* COLORS */
-$primary: $ma_couleur_principale; 
-$secondary: $ma_couleur_secondaire;
-$success: $ma_couleur_succes;
-$info: $ma_couleur_info;
-$warning: $ma_couleur_warning;
-$danger: $ma_couleur_danger;
+// Change the default bootstrap colors
+$primary: $fc-blue;
+//$secondary:     $gray-600;
+//$success:       $fc-green;
+$info:          $fc-pink;
+$warning:       $fc-green;
+//$danger:        $fc-red;
+//$light:         $gray-100;
+//$dark:          $gray-900;
 
-/* FONT */
-$font-family-sans-serif: $ma_police_sans_serif;
-$font-family-monospace: $ma_police_monospace;
+// Change de default font
+$font-family-sans-serif: $fc-font-main;
+$font-family-monospace: $fc-font-monospace;
 
-// #fc29f6
-// #21f91c
-// #343a40
-// #212529
+@import "bootstrap/scss/bootstrap.scss";
+@import "bootstrap-icons/font/bootstrap-icons.css";
+
