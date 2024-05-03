@@ -1,0 +1,17 @@
+// Change the default bootstrap colors
+$primary: $fc-blue;
+//$secondary:     $gray-600;
+//$success:       $fc-green;
+$info:          $fc-pink;
+$warning:       $fc-green;
+//$danger:        $fc-red;
+//$light:         $gray-100;
+//$dark:          $gray-900;
+
+// Change de default font
+$font-family-sans-serif: $fc-font-main;
+$font-family-monospace: $fc-font-monospace;
+
+@import "bootstrap/scss/bootstrap.scss";
+@import "bootstrap-icons/font/bootstrap-icons.css";
+

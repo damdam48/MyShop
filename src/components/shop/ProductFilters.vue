@@ -1,103 +1,102 @@
 <template>
-    <aside class="bg-body-secondary border shadow-sm d-flex flex-column flex-shrink-0 p-3 rounded">
-        <!-- Button close  -->
-        <div class="text-end order-1 order-md-0">
-            <i class="bi bi-x-circle text-info bg fs-4 fc-pointer mb-2"></i>
-        </div>
+  <aside class="bg-body-secondary border shadow-sm d-flex flex-column flex-shrink-0 p-3 rounded">
+    <!-- Button close  -->
+    <div class="text-end order-1 order-md-0">
+      <i class="bi bi-x-circle text-info bg fs-4 gd-pointer"></i>
+    </div>
+      <p> {{ state.filters.search.value }}</p>
+      <p> {{ state.filters.prices.value }}</p>
+      <p> {{ state.filters.categories.value }}</p>
+    <!-- FILTERS -->
+    <div class="mt-4" v-for="(filter, key) in state.filters">
+      <h4 class="text-uppercase h6 pb-2 "><i class="bi me-2" :class="filter.icon"></i>{{ filter.title }}</h4>
 
-        <!-- FILTERS -->
-        <!-- Search -->
-        <div class="mt-4">
-            <h4 class="text-uppercase h6 pb-2"><i class="bi bi-binoculars-fill me-2"></i>Rechercher</h4>
-            <div class="input-group mb-3">
-                <input type="text" class="form-control fs-7" placeholder="Chercher" />
-                <span class="input-group-text btn btn-primary fc-pointer mb-2"><i class="bi bi-search"></i></span>
-            </div>
-        </div>
-        <hr />
-        <!-- Categories filter -->
-        <div>
-            <h4 class="text-uppercase h6 pb-2"><i class="bi bi-tags-fill me-2"></i>Catégories</h4>
-            <ul class="list-group item form-check">
-                <!-- Category 1-->
-                <li class="list-group item">
-                    <div 
-                      class="list-group-item list-group-item-action fc-pointer mb-2"
-                      :class="{ 'border-primary' : isCategory1Checked }"
-                    >
-                        <label class="form-check" for="category-1">
-                            <input 
-                              id="category-1" 
-                              class="form-check-input" 
-                              name="category-1" 
-                              type="checkbox" 
-                              :checked="isCategory1Checked"
-                              />
-                            <span class="form-check-label fs-7"> Gadgets Lumineux </span>
-                        </label>
-                    </div>
-                </li>
-                <!-- Category 2 -->
-                <li class="list-group item">
-                    <div class="list-group-item list-group-item-action fc-pointer mb-2">
-                        <label class="form-check" for="category-2">
-                            <input id="category-2" class="form-check-input" name="category-2" type="checkbox" />
-                            <span class="form-check-label fs-7"> Technologie Futuriste </span>
-                        </label>
-                    </div>
-                </li>
-                <!-- Category 3 -->
-                <li class="list-group item">
-                    <div class="list-group-item list-group-item-action fc-pointer mb-2">
-                        <label class="form-check" for="category-3">
-                            <input id="category-3" class="form-check-input" name="category-3" type="checkbox" />
-                            <span class="form-check-label fs-7"> Café et Code </span>
-                        </label>
-                    </div>
-                </li>
-            </ul>
-        </div>
-        <hr />
-        <!-- Prices filter -->
-        <div>
-            <h4 class="text-uppercase h6 pb-2"><i class="bi bi-coin me-2"></i>Prix</h4>
-            <ul class="list-group item form-check">
-                <!-- Tous les prix-->
-                <li class="list-group item">
-                    <div class="list-group-item list-group-item-action fc-pointer mb-2">
-                        <label class="form-check" for="all">
-                            <input id="all" class="form-check-input" name="price" type="radio" value="all" checked />
-                            <span class="form-check-label fs-7"> Tous les prix </span>
-                        </label>
-                    </div>
-                </li>
-                <!-- Moins de 100-->
-                <li class="list-group item">
-                    <div class="list-group-item list-group-item-action fc-pointer mb-2">
-                        <label class="form-check" for="0-100">
-                            <input id="0-100" class="form-check-input" name="price" type="radio" value="0-100" />
-                            <span class="form-check-label fs-7"> Moins de 100€ </span>
-                        </label>
-                    </div>
-                </li>
-                <!-- 100-500 -->
-                <li class="list-group item">
-                    <div class="list-group-item list-group-item-action fc-pointer mb-2">
-                        <label class="form-check" for="100-500">
-                            <input id="100-500" class="form-check-input" name="price" type="radio" value="100-500" />
-                            <span class="form-check-label fs-7"> Entre 100 et 500€ </span>
-                        </label>
-                    </div>
-                </li>
-            </ul>
-        </div>
-    </aside>
+      <!-- If is a text input    -->
+      <div v-if="filter.title === 'Rechercher'" class="input-group mb-3" >
+        <input :type="filter.inputType" class="form-control fs-7 " :placeholder="filter.placeholder" v-model="state.filters.search.value">
+        <span class="input-group-text btn btn-primary  gd-pointer"><i class="bi bi-search"></i></span>
+      </div>
+
+      <!-- For Category -->
+      <ul v-else-if="filter.title === 'Catégories'" class="list-group item form-check ">
+        <li class="list-group item " v-for="item in filter.items">
+          <div class="list-group-item list-group-item-action gd-pointer mb-1"
+          :class="(state.filters.categories.value.includes(item.name)) ? 'border border-primary fc-input-selected' : ''"
+          >
+            <label class="form-check" :for="`${key}-${item.id}`">
+              <input 
+                :id="`${key}-${item.id}`" 
+                :name="`${key}-${item.id}`"
+                class="form-check-input " 
+                type="checkbox"
+                :value="item.name" 
+                :checked="state.filters.categories.value.includes(item.name)"
+                @change="categoriesValue(item.name, ($event.target as HTMLInputElement).checked)" 
+                
+              >
+              <span class="form-check-label fs-7">{{ item.name }}</span>
+            </label>
+          </div>
+        </li>
+      </ul>
+
+      <!-- For Prices -->
+      <ul v-else-if="filter.title === 'Prix'" class="list-group item form-check">
+        <li class="list-group item" v-for="item in filter.items">
+          <div class="list-group-item list-group-item-action gd-pointer mb-1"
+            :class="(state.filters.prices.value === item.value) ? 'border border-primary fc-input-selected' : ''">
+            <label class="form-check" :for="`${key}-${item.id}`">
+              <input 
+                :id="`${key}-${item.id}`" 
+                class="form-check-input" 
+                :value="item.value" 
+                :checked="state.filters.prices.value == item.value"
+                @change="priceValue(item.value)" 
+                :name="`${key}`" 
+                type="radio"
+              >
+            <span class="form-check-label fs-7">{{ item.name }}</span>
+            </label>
+          </div>
+        </li>
+      </ul>
+    </div>
+
+
+  </aside>
 </template>
-
 <script setup lang="ts">
+import { INITIALS_FILTERS } from '@/data/filters.data';
+import type { CategoryName, PriceType } from '@/interfaces/filter.interface';
 
-const isCategory1Checked = true
+import { reactive } from 'vue';
+
+const state = reactive({
+  filters: INITIALS_FILTERS,
+  test: 'test1',
+});
+
+function priceValue (value: PriceType) {
+  state.filters.prices.value = value;
+
+  console.log(state.filters.prices.value);
+}
+
+function categoriesValue (name: CategoryName, isCkecked: boolean) {
+  if (isCkecked) {
+    state.filters.categories.value.push(name);
+  } else {
+    state.filters.categories.value = state.filters.categories.value.filter(item => item!== name);
+  }
+  console.log(isCkecked);
+
+  console.log(state.filters.categories.value);
+}
+
 </script>
 
 <style scoped lang="scss">
+.fc-input-selected {
+  box-shadow: 0 0 0 0.25rem rgba(5, 223, 215, 0.25);
+}
 </style>

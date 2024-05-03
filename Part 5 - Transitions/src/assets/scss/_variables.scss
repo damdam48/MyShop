@@ -1,0 +1,33 @@
+// ########################################
+// ### Fonts ###
+// Import the Roboto condensed, JetBrains Mono and Montserrat fonts
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap&family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&display=swap');
+
+// Set the default font family
+$fc-font-title: 'Roboto Condensed', sans-serif;
+$fc-font-monospace: 'JetBrains Mono', monospace;
+$fc-font-main: 'Noto Sans', sans-serif;
+
+// ########################################
+// ### Colors ###
+$fc-blue: #05dfd7;
+$fc-red: #d9534f;
+$fc-pink: #fc03f4;
+$fc-green:  #21fc0d;
+$fc-yellow: #e8c34f;
+
+// ########################################
+// ### Create CSS variables to access in all scoped styles ###
+// This is a way to make the variables available in the Vue components
+// because scss variables are not available in scoped styles
+
+:root {
+  // Colors
+  --fc-blue: #{ $fc-blue };
+  --fc-red: #{ $fc-red };
+  --fc-pink: #{ $fc-pink };
+  --fc-green: #{ $fc-green };
+  --fc-yellow: #{ $fc-yellow };
+  // Fonts
+    --fc-font-title: #{ $fc-font-title };
+}

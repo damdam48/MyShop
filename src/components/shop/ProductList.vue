@@ -1,5 +1,5 @@
 <template>
-  <main>
+  <div>
     <!-- Product section  -->
     <section class="container pt-3 pb-5 text-center">
       <!-- Title -->
@@ -10,22 +10,14 @@
       </div>
       <!-- Product list -->
       <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
-        <ProductCard />
-        <ProductCard />
-        <ProductCard />
-        <ProductCard />
-        <ProductCard />
-        <ProductCard />
+        <ProductCard/>
       </div>
     </section>
-  </main>
+  </div>
 </template>
 
-<style scoped lang="scss">
-
-</style>
 <script setup lang="ts">
 import ProductCard from "@/components/shop/ProductCard.vue";
 
-const title = "Tous les produits 🛍️"
+const title = "Tous les produits";
 </script>
